@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Usuario
+from .models import Usuario, Consulta
 
 class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
@@ -8,10 +8,10 @@ class UsuarioSerializer(serializers.ModelSerializer):
                 
 class ConsultaSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Usuario
+        model = Consulta
         fields = 'id', 'data', 'cep', 'valorContaLuz', 'ajusteTarifa', 'tipoImovel', 'usuário'
         
 class ConsultaReadDeleteSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Usuario
+        model = Consulta
         fields = '__all__'

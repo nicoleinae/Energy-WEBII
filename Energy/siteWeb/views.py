@@ -3,8 +3,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.shortcuts import get_object_or_404
 
-from .models import Usuario
-from .serializers import UsuarioSerializer
+from .models import Usuario, Consulta
+from .serializers import UsuarioSerializer, ConsultaSerializer, ConsultaReadDeleteSerializer
 
 class UsuarioView(APIView):
 
@@ -49,4 +49,27 @@ class UsuarioReadUpdateDeleteView(APIView):
     def delete(self, request, pk):
         usuario = get_object_or_404(Usuario, pk=pk)
         usuario.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+#Consultas
+
+class ConsultaView(APIView):
+
+    def get(self, request):
+        consultas = Consulta.objects.all()
+        serializer = ConsultaSerializer(consultas, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class ConsultaReadDeleteView(APIView):
+
+    def get(self, request, pk):
+        consulta = get_object_or_404(Consulta, pk=pk)
+
+        serializer = ConsultaReadDeleteSerializer(consulta)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def delete(self, request, pk):
+        consulta = get_object_or_404(Consulta, pk=pk)
+        consulta.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
