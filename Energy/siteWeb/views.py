@@ -1,13 +1,26 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.permissions import AllowAny
 from django.shortcuts import get_object_or_404
 
 from .models import Usuario, Consulta
-from .serializers import UsuarioSerializer, ConsultaSerializer, ConsultaReadDeleteSerializer
+from .serializers import UsuarioSerializer, ConsultaSerializer, ConsultaReadDeleteSerializer, UserSerializer
+from rest_framework.authtoken.models import Token
+
+class UserRegisterAPIView(APIView):
+    permission_classes = [AllowAny]
+    def post(self, request, *args, **kwargs):
+        serializer = UserSerializer(data=request.data)
+        if serializer.is_valid():
+            user = serializer.save()
+            # Cria o token para o novo usuário
+            token, created = Token.objects.get_or_create(user=user)
+            return Response({"user": serializer.data, "token": token.key}, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class UsuarioView(APIView):
-
+    # permission_classes = [AllowAny]
     #define as ações quando recebe um requisicao do tipo post
     def post(self, request):
 
