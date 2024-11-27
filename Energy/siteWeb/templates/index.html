@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <title>Home Cadastro</title>
+</head>
+
+<body>
+    <div class="container">
+      <div class="form-box">
+        <h1>Bem-vindo</h1>
+
+        <div class="toggle-buttons">
+          <button id="loginBtn">Login</button>
+          <button id="registerBtn">Cadastro</button>
+        </div>
+
+        <form id="loginForm" class="form active-form">
+          <input id="email" type="email" placeholder="E-mail" required>
+          <input id="senha" type="password" placeholder="Senha" required>
+          <button type="submit">Entrar</button>
+        </form>
+
+        <form id="registerForm" class="form">
+          <input id="name" type="text" placeholder="Nome Completo" required>
+          <input id="e-mail" type="email" placeholder="E-mail" required>
+          <input id="password" type="password" placeholder="Senha" required>
+          <button type="submit">Cadastrar</button>
+        </form>
+
+      </div>
+    </div>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>

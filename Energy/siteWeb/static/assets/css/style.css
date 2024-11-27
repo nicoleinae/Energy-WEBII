@@ -1,0 +1,91 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+
+  body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #89FFDB, #000D28, #010817);
+    color: #fff;
+  }
+  
+  .container {
+    background: rgba(0, 13, 40, 0.8);
+    padding: 2rem;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Título */
+  h1 {
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    color: #89FFDB;
+  }
+  
+  /* Botões de alternância */
+  .toggle-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 1rem;
+  }
+  
+  .toggle-buttons button {
+    font-weight: bold;
+    flex: 1;
+    padding: 0.5rem;
+    margin: 0 5px;
+    border: none;
+    background: #001b55;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
+  }
+  
+  .toggle-buttons button:hover {
+    background: #89FFDB;
+    color: #000;
+  }
+  
+  /* Formulários */
+  .form {
+    display: none;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .form.active-form {
+    display: flex;
+  }
+  
+  .form input {
+    padding: 0.7rem;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+  }
+  
+  .form button {
+    font-weight: bold;
+    padding: 0.7rem;
+    border: none;
+    background: #89FFDB;
+    color: #000;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
+  }
+  
+  .form button:hover {
+    background: #66e0c2;
+  }
+  
