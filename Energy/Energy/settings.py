@@ -55,6 +55,7 @@ REST_FRAMEWORK = {
     ],
 }
 
+LOGIN_URL = '/login/'
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',

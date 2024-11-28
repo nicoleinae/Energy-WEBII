@@ -13,6 +13,6 @@ urlpatterns = [
     path('register/', UserRegisterAPIView.as_view(), name='user-register'),
 
     #Front-end personalizado
-    path('', index_view, name='home login'),
+    path('', index_view, name='home_login'),
     path('home/', home_view, name='home'),
 ]
