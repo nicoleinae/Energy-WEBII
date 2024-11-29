@@ -21,12 +21,12 @@ class UserSerializer(serializers.ModelSerializer):
 class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuario
-        fields = ['id', 'nome', 'email', 'senha']
+        fields = ['nome', 'email', 'senha']
                 
 class ConsultaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Consulta
-        fields = 'id', 'data', 'cep', 'valorContaLuz', 'ajusteTarifa', 'tipoImovel', 'usuário'
+        fields = ['data', 'cep', 'valorContaLuz', 'ajusteTarifa', 'tipoImovel', 'usuário']
         
 class ConsultaReadDeleteSerializer(serializers.ModelSerializer):
     class Meta:
