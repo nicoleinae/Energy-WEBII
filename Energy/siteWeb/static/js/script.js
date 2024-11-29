@@ -48,10 +48,12 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("loginButton").addEventListener("click", loginUser);
 });
 
+
+
+// Função para o login de usuário
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("loginForm");
-  
-    // Função para o login de usuário
+
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
   
@@ -75,7 +77,6 @@ document.addEventListener("DOMContentLoaded", () => {
   
           alert("Login efetuado com sucesso!");
           console.log("Resposta da API:", data);
-  
 
           window.location.href = 'http://127.0.0.1:8000/home/';
         } else {

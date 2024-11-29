@@ -1,0 +1,108 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, #89FFDB, #000D28, #010817);
+    color: #fff;
+    align-items: center;
+}
+
+header {
+    width: 100%;
+    background-color: rgba(0, 22, 70, 0.9); /* Cor escura para o cabeçalho */
+    padding: 1rem 2rem; /* Espaçamento interno */
+    position: fixed; /* Fixa o cabeçalho no topo da página */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Garante que o cabeçalho fique acima do conteúdo */
+}
+
+.header {
+    display: flex;
+    justify-content: space-between; /* Distribui o conteúdo com espaço entre */
+    align-items: center; /* Alinha o conteúdo verticalmente */
+}
+
+header h1 {
+    font-size: 1.8rem;
+    color: #89FFDB; /* Cor clara para o título */
+    margin: 0;
+}
+
+button {
+    font-weight: bold;
+    font-size: 18px;
+    padding: 0.7rem 1.5rem;
+    border: none;
+    background: #004d6b;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #89FFDB;
+    color: #000;
+}
+
+.container {
+    margin-top: 10rem;
+    padding: 2rem;
+    background: linear-gradient(0deg);
+    border-radius: 10px;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0px 2px 8px rgb(0, 255, 179);
+    display: flex;
+    justify-content: center; 
+    height: 70%;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 100%; 
+    max-width: 500px; 
+}
+
+.form label {
+    font-weight: bold;
+    text-align: left;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+.form input,
+.form select {
+    padding: 1rem;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+}
+
+.form button {
+    margin-top: 3rem;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 1rem 1.5rem;
+    border: none;
+    background: #004d6b;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.form button:hover {
+    background: #89FFDB;
+    color: #000;
+}

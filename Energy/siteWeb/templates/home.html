@@ -6,14 +6,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'assets/css/home.css' %}">
-    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <title>Home</title>
 </head>
 
-<body>
-    <div class="container">
-      <div class="form-box">
-        <h1>Entrouuuuu!</h1>
+<header>
+    <div class="header">
+        <h1>Olá, {{ user.username }}</h1> 
+        <button id="historicoBtn">Histórico de Consultas</button>
     </div>
+</header>
+
+<body>
+
+    <div class="container">
+  
+      <!-- Formulário de Consulta -->
+      <form id="consultaForm" class="form">
+          <label for="cep">CEP:</label>
+          <input type="text" id="cep" name="cep" required maxlength="8" placeholder="Digite o CEP">
+  
+          <label for="valorContaLuz">Valor da Conta de Luz (R$):</label>
+          <input type="number" id="valorContaLuz" name="valorContaLuz" required step="0.01" placeholder="Digite o valor da conta de luz">
+  
+          <label for="ajusteTarifa">Ajuste de Tarifa (R$):</label>
+          <input type="number" id="ajusteTarifa" name="ajusteTarifa" required step="0.01" placeholder="Digite o ajuste da tarifa">
+  
+          <label for="tipoImovel">Tipo de Imóvel:</label>
+          <select id="tipoImovel" name="tipoImovel" required>
+              <option value="R">Residencial</option>
+              <option value="E">Empresarial</option>
+          </select>
+  
+          <button type="submit">Gerar Resultados</button>
+      </form>
+    </div>
+
     <script src="{% static 'js/home.js' %}"></script>
 </body>
