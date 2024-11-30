@@ -1,3 +1,4 @@
+/* Estilos gerais já definidos */
 * {
     margin: 0;
     padding: 0;
@@ -5,18 +6,20 @@
     font-family: Arial, sans-serif;
 }
 
+/* Fundo de degradê para toda a página */
 body {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    background: linear-gradient(135deg, #89FFDB, #000D28, #010817);
+    background: #010817;
     color: #fff;
     align-items: center;
 }
 
+/* Cabeçalho */
 header {
     width: 100%;
-    background-color: rgba(0, 22, 70, 0.9); /* Cor escura para o cabeçalho */
+    background: radial-gradient(circle, #004d6b 0%, #031232 50%);
     padding: 1rem 2rem; /* Espaçamento interno */
     position: fixed; /* Fixa o cabeçalho no topo da página */
     top: 0;
@@ -32,8 +35,11 @@ header {
 }
 
 header h1 {
-    font-size: 1.8rem;
-    color: #89FFDB; /* Cor clara para o título */
+    font-weight: bold;
+    font-size: 3rem;
+    background: linear-gradient(20deg, #020d27, #89FFDB);  /* Gradiente do texto */
+    -webkit-background-clip: text;  /* Aplica o gradiente ao texto */
+    color: transparent;  /* Torna o texto transparente para mostrar o gradiente */
     margin: 0;
 }
 
@@ -54,18 +60,19 @@ button:hover {
     color: #000;
 }
 
+/* Container com fundo transparente */
 .container {
-    margin-top: 6rem;
-    margin-bottom: 10rem;
-    padding: 2rem;
-    background: linear-gradient(0deg);
+    margin-top: 8rem; /* Ajusta o espaço entre o cabeçalho e o container */
+    background: transparent; /* Deixa o fundo transparente */
     border-radius: 10px;
     width: 100%;
     max-width: 600px;
-    box-shadow: 0px 2px 8px rgb(0, 255, 179);
+    box-shadow: 0px 0px 8px rgb(0, 255, 179);
     display: flex;
-    justify-content: center; 
-    height: 64rem;
+    justify-content: center;
+    align-items: center; 
+    height: 80%; /* Remove altura fixa para que o container possa crescer conforme o conteúdo */
+    flex-direction: column;
 }
 
 ::placeholder {
@@ -111,7 +118,41 @@ button:hover {
     transition: background 0.3s;
 }
 
+#btnResultado {
+    margin-bottom: 2rem;
+}
+
 .form button:hover {
     background: #89FFDB;
     color: #000;
+}
+
+/* Estilos para os resultados (insights) */
+.resultados {
+    padding: 2rem;
+    margin-top: 2rem; /* Reduz o espaço entre o container e os resultados */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    width: 100%;
+    /* Não aplicamos mais fundo aqui */
+}
+
+.resultado-item {
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0px 0px 8px rgb(0, 255, 179);
+    text-align: center;
+    background: rgba(0, 22, 70, 0.8); /* Mantém o fundo escuro com leve transparência para contraste */
+}
+
+.resultado-item h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #89FFDB;
+}
+
+.resultado-item p {
+    font-size: 1.5rem;
+    font-weight: bold;
 }

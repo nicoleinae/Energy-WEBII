@@ -11,16 +11,15 @@
 
 <header>
     <div class="header">
-        <h1>Olá, {{ user.username }}</h1> 
+        <h1>Energy!</h1> 
         <button id="historicoBtn">Histórico de Consultas</button>
     </div>
 </header>
 
 <body>
 
+    <!-- Formulário de Consulta -->
     <div class="container">
-  
-      <!-- Formulário de Consulta -->
       <form id="consultaForm" class="form">
           <input type="text" id="cep" name="cep" required maxlength="8" placeholder="Digite seu CEP">
   
@@ -33,8 +32,41 @@
               <option value="E">Empresarial</option>
           </select>
   
-          <button type="submit">Gerar Resultados</button>
+          <button id="btnResultado" type="submit">Gerar Resultados</button>
       </form>
+    </div>
+
+    <!-- Resultados dos Cálculos (Insights) -->
+    <div id="resultados" class="resultados" style="display: none;">
+        <div class="resultado-item">
+            <h3>Quantidade de Painéis Solares</h3>
+            <p id="quantidadePaineis">-</p>
+        </div>
+
+        <div class="resultado-item">
+            <h3>Custo Total do Sistema Solar</h3>
+            <p id="custoTotal">-</p>
+        </div>
+
+        <div class="resultado-item">
+            <h3>Economia após 5 anos</h3>
+            <p id="economiaTotal">-</p>
+        </div>
+
+        <div class="resultado-item">
+            <h3>Consumo Mensal Estimado</h3>
+            <p id="consumoMensal">-</p>
+        </div>
+
+        <div class="resultado-item">
+            <h3>Tempo de Retorno do Investimento</h3>
+            <p id="tempoRetorno">-</p>
+        </div>
+
+        <div class="resultado-item">
+            <h3>Área Necessária para os Painéis</h3>
+            <p id="areaTotal">-</p>
+        </div>
     </div>
 
     <script src="{% static 'js/home.js' %}"></script>
