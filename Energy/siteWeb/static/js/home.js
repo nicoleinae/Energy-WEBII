@@ -7,6 +7,15 @@ document.addEventListener('DOMContentLoaded', function() {
         let valorContaLuz = parseFloat(document.getElementById("valorContaLuz").value);
         let ajusteTarifa = parseFloat(document.getElementById("ajusteTarifa").value);
 
+        if(valorContaLuz<1) {
+            alert("O valor deve ser maior do que 1,00")
+            valorContaLuz=1
+        }
+        if(ajusteTarifa<1) {
+            alert("O valor deve ser maior do que 1,00")
+            ajusteTarifa=1
+        }
+
         let tipoImovel = document.getElementById("tipoImovel").value;
 
         // Ajuste do tipo de imóvel (se for "E", muda para "Empresarial")

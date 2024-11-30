@@ -37,7 +37,7 @@ header {
 header h1 {
     font-weight: bold;
     font-size: 3rem;
-    background: linear-gradient(20deg, #020d27, #89FFDB);  /* Gradiente do texto */
+    background: linear-gradient(20deg, #fff98c, #ff8400, #ff1900);  /* Gradiente do texto */
     -webkit-background-clip: text;  /* Aplica o gradiente ao texto */
     color: transparent;  /* Torna o texto transparente para mostrar o gradiente */
     margin: 0;
