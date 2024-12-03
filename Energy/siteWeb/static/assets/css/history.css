@@ -1,0 +1,35 @@
+/* Estilos para a página de histórico */
+.historico-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 100%;
+    max-width: 600px;
+    margin-top: 2rem;
+}
+
+.registro {
+    background: rgba(0, 22, 70, 0.8); /* Fundo escuro com transparência */
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0px 0px 8px rgb(0, 255, 179);
+}
+
+.registro h3 {
+    font-size: 1.5rem;
+    color: #89FFDB;
+    margin-bottom: 1rem;
+}
+
+.registro p {
+    font-size: 1.2rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+
+/* Linha divisória entre registros */
+hr {
+    border: 0;
+    border-top: 1px solid #89FFDB;
+    margin-top: 1rem;
+}

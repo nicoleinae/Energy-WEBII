@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'assets/css/home.css' %}">
+    <title>Histórico de Consultas</title>
+</head>
+
+<body>
+
+    <header>
+        <div class="header">
+            <h1>Histórico de Consultas</h1>
+            <button id="historicoBtn" href="{% static '/history.html' %}">Voltar para Home</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2>Consultas Anteriores:</h2>
+        <div id="historicoLista" class="historico-lista">
+            <!-- Histórico será carregado aqui -->
+        </div>
+    </div>
+
+    <script>
+        // Função para carregar o histórico de consultas do localStorage
+        function carregarHistorico() {
+            const historico = JSON.parse(localStorage.getItem('historicoConsultas')) || [];
+
+            const historicoDiv = document.getElementById('historicoLista');
+            historicoDiv.innerHTML = ''; // Limpar lista atual
+
+            if (historico.length === 0) {
+                historicoDiv.innerHTML = '<p>Nenhuma consulta registrada ainda.</p>';
+            } else {
+                historico.forEach((registro, index) => {
+                    const divRegistro = document.createElement('div');
+                    divRegistro.classList.add('registro');
+                    divRegistro.innerHTML = `
+                        <div class="resultado-item">
+                            <h3>Consulta #${index + 1}</h3>
+                            <p><strong>CEP:</strong> ${registro.cep}</p>
+                            <p><strong>Valor da Conta de Luz:</strong> R$ ${registro.valorContaLuz}</p>
+                            <p><strong>Ajuste da Tarifa:</strong> R$ ${registro.ajusteTarifa}</p>
+                            <p><strong>Tipo de Imóvel:</strong> ${registro.tipoImovel === 'R' ? 'Residencial' : 'Empresarial'}</p>
+                            <p><strong>Quantidade de Painéis Solares:</strong> ${registro.quantidadePaineis}</p>
+                            <p><strong>Custo Total do Sistema Solar:</strong> R$ ${registro.custoTotal}</p>
+                            <p><strong>Economia após 5 anos:</strong> R$ ${registro.economiaTotal}</p>
+                            <p><strong>Consumo Mensal Estimado:</strong> ${registro.consumoMensal}</p>
+                            <p><strong>Tempo de Retorno:</strong> ${registro.tempoRetorno} anos</p>
+                            <p><strong>Área Necessária para os Painéis:</strong> ${registro.areaTotal} m²</p>
+                        </div>
+                        <hr>
+                    `;
+                    historicoDiv.appendChild(divRegistro);
+                });
+            }
+        }
+
+        // Carregar o histórico assim que a página for carregada
+        window.onload = carregarHistorico;
+    </script>
+
+</body>
+
+</html>
