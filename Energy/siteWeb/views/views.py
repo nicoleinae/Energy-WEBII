@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import AllowAny
 from django.shortcuts import get_object_or_404, render
+from django.contrib.auth.decorators import login_required
 
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
@@ -12,6 +13,10 @@ from ..models import Usuario, Consulta
 from ..serializers import UsuarioSerializer, ConsultaSerializer, ConsultaReadDeleteSerializer, UserSerializer
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
+
+from ..serializers import ConsultaReadDeleteSerializer
+from rest_framework.permissions import IsAuthenticated
+from rest_framework import generics
 
 def custom_login(request):
     if request.method == 'POST':
@@ -121,3 +126,16 @@ class ConsultaReadDeleteView(APIView):
         consulta = get_object_or_404(Consulta, pk=pk)
         consulta.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
+class ConsultaHistoricoView(generics.ListAPIView):
+    serializer_class = ConsultaReadDeleteSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        # Retorna as consultas do usuário logado
+        return Consulta.objects.filter(usuario=self.request.user)
+    
+@login_required
+def historico_view(request):
+    consultas = Consulta.objects.filter(usuario=request.user)
+    return render(request, 'historico.html', {'consultas': consultas})

@@ -68,7 +68,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 valorContaLuz: valorContaLuz,
                 ajusteTarifa: ajusteTarifa,
                 tipoImovel: tipoImovel,
-                data: new Date().toISOString().split('T')[0]  // Data atual no formato YYYY-MM-DD
+                data: new Date().toISOString().split('T')[0],  // Data atual no formato YYYY-MM-DD
+                usuario: UserActivation.id
             })
         })
         .then(response => response.json())
@@ -78,5 +79,14 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(error => {
             console.error("Erro ao salvar consulta", error);
         });
+    });
+
+    // Função para redirecionar para o histórico de consultas
+    document.getElementById("historicoBtn").addEventListener("click", function() {
+        // Obter a URL do histórico diretamente do atributo data-historico-url
+        let historicoUrl = document.getElementById("historicoBtn").getAttribute("data-historico-url");
+
+        // Redireciona para a página de histórico de consultas
+        window.location.href = historicoUrl;
     });
 });

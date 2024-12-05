@@ -49,3 +49,12 @@ document.getElementById('consultaForm').addEventListener('submit', function(even
     // Exibindo os resultados
     document.getElementById('resultados').style.display = 'block';
 });
+
+// Função para redirecionar para o histórico de consultas
+document.getElementById("btnVoltar").addEventListener("click", function() {
+    // Obter a URL do histórico diretamente do atributo data-historico-url
+    let homeUrl = document.getElementById("btnVoltar").getAttribute("data-home-url");
+
+    // Redireciona para a página de histórico de consultas
+    window.location.href = homeUrl;
+});

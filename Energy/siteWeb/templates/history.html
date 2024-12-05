@@ -9,60 +9,46 @@
     <title>Histórico de Consultas</title>
 </head>
 
-<body>
-
-    <header>
-        <div class="header">
-            <h1>Histórico de Consultas</h1>
-            <button id="historicoBtn" href="{% static '/history.html' %}">Voltar para Home</button>
-        </div>
-    </header>
-
-    <div class="container">
-        <h2>Consultas Anteriores:</h2>
-        <div id="historicoLista" class="historico-lista">
-            <!-- Histórico será carregado aqui -->
-        </div>
+<header>
+    <div class="header">
+        <h1>Histórico de Consultas</h1>
+        <h3>Bem-vindo, {{ user.username }}!</h3>
+        <button type="button" id="btnVoltar" data-home-url="{% url 'home' %}">Voltar</button>
     </div>
+</header>
 
-    <script>
-        // Função para carregar o histórico de consultas do localStorage
-        function carregarHistorico() {
-            const historico = JSON.parse(localStorage.getItem('historicoConsultas')) || [];
+<body>
+    <div class="container">
+        {% csrf_token %}
+        <h2>Consultas Realizadas</h2>
 
-            const historicoDiv = document.getElementById('historicoLista');
-            historicoDiv.innerHTML = ''; // Limpar lista atual
-
-            if (historico.length === 0) {
-                historicoDiv.innerHTML = '<p>Nenhuma consulta registrada ainda.</p>';
-            } else {
-                historico.forEach((registro, index) => {
-                    const divRegistro = document.createElement('div');
-                    divRegistro.classList.add('registro');
-                    divRegistro.innerHTML = `
-                        <div class="resultado-item">
-                            <h3>Consulta #${index + 1}</h3>
-                            <p><strong>CEP:</strong> ${registro.cep}</p>
-                            <p><strong>Valor da Conta de Luz:</strong> R$ ${registro.valorContaLuz}</p>
-                            <p><strong>Ajuste da Tarifa:</strong> R$ ${registro.ajusteTarifa}</p>
-                            <p><strong>Tipo de Imóvel:</strong> ${registro.tipoImovel === 'R' ? 'Residencial' : 'Empresarial'}</p>
-                            <p><strong>Quantidade de Painéis Solares:</strong> ${registro.quantidadePaineis}</p>
-                            <p><strong>Custo Total do Sistema Solar:</strong> R$ ${registro.custoTotal}</p>
-                            <p><strong>Economia após 5 anos:</strong> R$ ${registro.economiaTotal}</p>
-                            <p><strong>Consumo Mensal Estimado:</strong> ${registro.consumoMensal}</p>
-                            <p><strong>Tempo de Retorno:</strong> ${registro.tempoRetorno} anos</p>
-                            <p><strong>Área Necessária para os Painéis:</strong> ${registro.areaTotal} m²</p>
-                        </div>
-                        <hr>
-                    `;
-                    historicoDiv.appendChild(divRegistro);
-                });
-            }
-        }
-
-        // Carregar o histórico assim que a página for carregada
-        window.onload = carregarHistorico;
-    </script>
+        {% if consultas %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>CEP</th>
+                        <th>Valor Conta Luz</th>
+                        <th>Ajuste Tarifa</th>
+                        <th>Tipo Imóvel</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for consulta in consultas %}
+                        <tr>
+                            <td>{{ consulta.data }}</td>
+                            <td>{{ consulta.cep }}</td>
+                            <td>R$ {{ consulta.valorContaLuz }}</td>
+                            <td>R$ {{ consulta.ajusteTarifa }}</td>
+                            <td>{{ consulta.tipoImovel }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Você ainda não fez nenhuma consulta.</p>
+        {% endif %}
+    </div>
 
 </body>
 

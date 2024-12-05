@@ -1,35 +1,121 @@
-/* Estilos para a página de histórico */
-.historico-lista {
+/* Estilos gerais já definidos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Fundo de degradê para toda a página */
+body {
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-    width: 100%;
-    max-width: 600px;
-    margin-top: 2rem;
-}
-
-.registro {
-    background: rgba(0, 22, 70, 0.8); /* Fundo escuro com transparência */
-    border-radius: 10px;
-    padding: 1rem;
-    box-shadow: 0px 0px 8px rgb(0, 255, 179);
-}
-
-.registro h3 {
-    font-size: 1.5rem;
-    color: #89FFDB;
-    margin-bottom: 1rem;
-}
-
-.registro p {
-    font-size: 1.2rem;
+    background: #010817;
     color: #fff;
-    margin-bottom: 0.5rem;
+    align-items: center;
 }
 
-/* Linha divisória entre registros */
-hr {
-    border: 0;
-    border-top: 1px solid #89FFDB;
-    margin-top: 1rem;
+/* Cabeçalho */
+header {
+    width: 100%;
+    background: radial-gradient(circle, #004d6b 0%, #031232 50%);
+    padding: 1rem 2rem; /* Espaçamento interno */
+    position: fixed; /* Fixa o cabeçalho no topo da página */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Garante que o cabeçalho fique acima do conteúdo */
+}
+
+.header {
+    display: flex;
+    justify-content: space-between; /* Distribui o conteúdo com espaço entre */
+    align-items: center; /* Alinha o conteúdo verticalmente */
+}
+
+header h1 {
+    font-weight: bold;
+    font-size: 3rem;
+    background: linear-gradient(20deg, #fff98c, #ff8400, #ff1900);  /* Gradiente do texto */
+    -webkit-background-clip: text;  /* Aplica o gradiente ao texto */
+    color: transparent;  /* Torna o texto transparente para mostrar o gradiente */
+    margin: 0;
+}
+
+header h3 {
+    text-shadow: 0px 0px 2px #ff6200;
+    font-weight: bold;
+    margin: 0;
+}
+
+button {
+    font-weight: bold;
+    font-size: 18px;
+    padding: 0.7rem 1.5rem;
+    border: none;
+    background: #004d6b;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #89FFDB;
+    color: #000;
+}
+
+/* Container com fundo transparente */
+.container {
+    margin-top: 8rem; /* Ajusta o espaço entre o cabeçalho e o container */
+    background: transparent; /* Deixa o fundo transparente */
+    border-radius: 10px;
+    width: 100%;
+    max-width: 900px;
+    box-shadow: 0px 0px 8px rgb(0, 255, 179);
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    flex-direction: column;
+    padding: 1rem;
+    min-height: 80vh; /* Garante que o container tenha altura mínima */
+}
+
+/* Estilo para a tabela */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+    color: #fff;
+    font-size: 1rem;
+    text-align: left;
+}
+
+th, td {
+    padding: 1rem;
+    border-bottom: 1px solid #fff;
+}
+
+th {
+    background: #004d6b;
+    color: #fff;
+}
+
+td {
+    background: rgba(0, 22, 70, 0.8); /* Fundo escuro com leve transparência */
+}
+
+table tr:nth-child(even) {
+    background: rgba(0, 22, 70, 0.7);
+}
+
+table tr:hover {
+    background: rgba(0, 255, 179, 0.1); /* Efeito de hover na linha */
+}
+
+/* Mensagem caso não haja consultas */
+.container p {
+    font-size: 1.2rem;
+    color: #ff6200;
 }

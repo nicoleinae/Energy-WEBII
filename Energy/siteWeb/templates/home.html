@@ -13,7 +13,7 @@
     <div class="header">
         <h1>Energy!</h1>
         <h3>Bem vindo! {{user.username}}</h2> 
-        <button type="submit" id="historicoBtn" href="{% url 'historico' %}">Histórico de Consultas</button>
+        <button type="button" id="historicoBtn" data-historico-url="{% url 'history' %}">Histórico de Consultas</button>
     </div>
 </header>
 
