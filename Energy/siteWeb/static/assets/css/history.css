@@ -50,6 +50,7 @@ header h3 {
 }
 
 button {
+    width: 10rem;
     font-weight: bold;
     font-size: 18px;
     padding: 0.7rem 1.5rem;

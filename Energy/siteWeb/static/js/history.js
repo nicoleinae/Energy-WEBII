@@ -1,3 +1,12 @@
+// Função para redirecionar para o histórico de consultas
+document.getElementById("btnVoltar").addEventListener("click", function() {
+    // Obter a URL do histórico diretamente do atributo data-historico-url
+    let homeUrl = document.getElementById("btnVoltar").getAttribute("data-home-url");
+
+    // Redireciona para a página de histórico de consultas
+    window.location.href = homeUrl;
+});
+
 document.getElementById('consultaForm').addEventListener('submit', function(event) {
     event.preventDefault();
 
@@ -50,11 +59,28 @@ document.getElementById('consultaForm').addEventListener('submit', function(even
     document.getElementById('resultados').style.display = 'block';
 });
 
-// Função para redirecionar para o histórico de consultas
-document.getElementById("btnVoltar").addEventListener("click", function() {
-    // Obter a URL do histórico diretamente do atributo data-historico-url
-    let homeUrl = document.getElementById("btnVoltar").getAttribute("data-home-url");
+window.onload = function() {
+    const historico = JSON.parse(localStorage.getItem('historicoConsultas')) || [];
 
-    // Redireciona para a página de histórico de consultas
-    window.location.href = homeUrl;
-});
+    const tableBody = document.querySelector('table tbody');
+    tableBody.innerHTML = ''; // Limpa o corpo da tabela para não duplicar os dados
+
+    if (historico.length > 0) {
+        historico.forEach(consulta => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${consulta.data}</td>
+                <td>${consulta.cep}</td>
+                <td>R$ ${consulta.valorContaLuz}</td>
+                <td>R$ ${consulta.ajusteTarifa}</td>
+                <td>${consulta.tipoImovel}</td>
+            `;
+            tableBody.appendChild(tr);
+        });
+    } else {
+        // Se não houver consultas, exibe a mensagem
+        const p = document.createElement('p');
+        p.textContent = "Você ainda não fez nenhuma consulta.";
+        document.querySelector('.container').appendChild(p);
+    }
+};

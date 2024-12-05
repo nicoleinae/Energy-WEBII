@@ -12,7 +12,6 @@
 <header>
     <div class="header">
         <h1>Histórico de Consultas</h1>
-        <h3>Bem-vindo, {{ user.username }}!</h3>
         <button type="button" id="btnVoltar" data-home-url="{% url 'home' %}">Voltar</button>
     </div>
 </header>
@@ -50,6 +49,7 @@
         {% endif %}
     </div>
 
+    <script src="{% static 'js/history.js' %}"></script>
 </body>
 
 </html>

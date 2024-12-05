@@ -138,4 +138,4 @@ class ConsultaHistoricoView(generics.ListAPIView):
 @login_required
 def historico_view(request):
     consultas = Consulta.objects.filter(usuario=request.user)
-    return render(request, 'historico.html', {'consultas': consultas})
+    return render(request, 'history.html', {'consultas': consultas})
