@@ -56,10 +56,11 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById("resultados").style.display = "grid";  // Exibe a grade de resultados
 
         // Enviar os dados da consulta para o backend via API (fetch)
-        fetch('http://127.0.0.1:8000/consulta/', {
+        fetch('http://127.0.0.1:8000/consulta/<int:pk>/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'X-CSRFToken': document.querySelector('input[name="csrfmiddlewaretoken"]').value,  // CSRF token
                 'Authorization': 'Bearer ' + localStorage.getItem('token'),
             },
             body: JSON.stringify({

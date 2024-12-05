@@ -11,8 +11,9 @@
 
 <header>
     <div class="header">
-        <h1>Energy!</h1> 
-        <button id="historicoBtn">Histórico de Consultas</button>
+        <h1>Energy!</h1>
+        <h3>Bem vindo! {{user.username}}</h2> 
+        <button type="submit" id="historicoBtn" href="{% url 'historico' %}">Histórico de Consultas</button>
     </div>
 </header>
 
@@ -21,6 +22,8 @@
     <!-- Formulário de Consulta -->
     <div class="container">
       <form id="consultaForm" class="form">
+          {% csrf_token %}
+
           <input type="text" id="cep" name="cep" required maxlength="8" placeholder="Digite seu CEP">
   
           <input type="number" id="valorContaLuz" name="valorContaLuz" min="1" required step="0.01" placeholder="Digite o valor da conta de luz">

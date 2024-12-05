@@ -43,6 +43,12 @@ header h1 {
     margin: 0;
 }
 
+header h3 {
+    text-shadow: 0px 0px 2px #ff6200;
+    font-weight: bold;
+    margin: 0;
+}
+
 button {
     font-weight: bold;
     font-size: 18px;

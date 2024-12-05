@@ -2,12 +2,27 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import AllowAny
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
+
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login, authenticate
+from django.shortcuts import redirect
 
 from ..models import Usuario, Consulta
 from ..serializers import UsuarioSerializer, ConsultaSerializer, ConsultaReadDeleteSerializer, UserSerializer
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
+
+def custom_login(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect('home')  # Redireciona para a home após login bem-sucedido
+    else:
+        form = AuthenticationForm()
+    return render(request, 'login.html', {'form': form})
 
 class UserRegisterAPIView(APIView):
     permission_classes = [AllowAny]
@@ -71,7 +86,7 @@ class UsuarioReadUpdateDeleteView(APIView):
 #Consultas
 
 class ConsultaView(APIView):
-
+    permission_classes = [AllowAny]
     #define as ações quando recebe um requisicao do tipo post
     def post(self, request):
 
