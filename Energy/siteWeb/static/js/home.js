@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById("resultados").style.display = "grid";  // Exibe a grade de resultados
 
         // Enviar os dados da consulta para o backend via API (fetch)
-        fetch('http://127.0.0.1:8000/consulta/<int:pk>/', {
+        fetch('http://127.0.0.1:8000/consulta/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
