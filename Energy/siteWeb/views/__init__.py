@@ -4,14 +4,14 @@ from .templates import (
     
 )
 
-from .views import UserRegisterAPIView, UsuarioView, UsuarioReadUpdateDeleteView, ConsultaView, ConsultaReadDeleteView
+from .views import UserRegisterAPIView, UserView, UsuarioReadUpdateDeleteView, ConsultaView, ConsultaReadDeleteView
 
 __all__ = [
     "index_view",
     "home_view",
     
     "UserRegisterAPIView",
-    "UsuarioView",
+    "UserView",
     "UsuarioReadUpdateDeleteView",
     "ConsultaView",
     "ConsultaReadDeleteView",

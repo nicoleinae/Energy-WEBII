@@ -9,8 +9,8 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
 from django.shortcuts import redirect
 
-from ..models import Usuario, Consulta
-from ..serializers import UsuarioSerializer, ConsultaSerializer, ConsultaReadDeleteSerializer, UserSerializer
+from ..models import Consulta, User
+from ..serializers import ConsultaSerializer, ConsultaReadDeleteSerializer, UserSerializer
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 
@@ -41,14 +41,14 @@ class UserRegisterAPIView(APIView):
             return Response({"user": serializer.data, "token": token.key}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class UsuarioView(APIView):
+class UserView(APIView):
     permission_classes = [AllowAny]
 
     #define as ações quando recebe um requisicao do tipo post
     def post(self, request):
 
         #instancia o serialize com os dados recebidos no 'request'
-        serializer = UsuarioSerializer(data=request.data)
+        serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
 
             #se o formato recebido estiver correto, salva os dados no banco de dados
@@ -61,8 +61,8 @@ class UsuarioView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def get(self, request):
-        usuarios = Usuario.objects.all()
-        serializer = UsuarioSerializer(usuarios, many=True)
+        user = User.objects.all()
+        serializer = UserSerializer(user, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
@@ -70,22 +70,22 @@ class UsuarioReadUpdateDeleteView(APIView):
     permission_classes = [AllowAny]
 
     def get(self, request, pk):
-        usuario = get_object_or_404(Usuario, pk=pk)
+        user = get_object_or_404(User, pk=pk)
 
-        serializer = UsuarioSerializer(usuario)
+        serializer = UserSerializer(user)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def put(self, request, pk):
-        usuario = get_object_or_404(Usuario, pk=pk)
-        serializer = UsuarioSerializer(usuario, data=request.data)
+        user = get_object_or_404(User, pk=pk)
+        serializer = UserSerializer(user, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk):
-        usuario = get_object_or_404(Usuario, pk=pk)
-        usuario.delete()
+        user = get_object_or_404(User, pk=pk)
+        user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 #Consultas
@@ -133,9 +133,9 @@ class ConsultaHistoricoView(generics.ListAPIView):
 
     def get_queryset(self):
         # Retorna as consultas do usuário logado
-        return Consulta.objects.filter(usuario=self.request.user)
+        return Consulta.objects.filter(user=self.request.user)
     
 @login_required
 def historico_view(request):
-    consultas = Consulta.objects.filter(usuario=request.user)
+    consultas = Consulta.objects.filter(user=request.user)
     return render(request, 'history.html', {'consultas': consultas})

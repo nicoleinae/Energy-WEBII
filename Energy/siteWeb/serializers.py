@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import Usuario, Consulta
+from .models import Consulta
 
 class UserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'})
@@ -17,16 +17,11 @@ class UserSerializer(serializers.ModelSerializer):
             password=validated_data['password']
         )
         return user
-
-class UsuarioSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Usuario
-        fields = ['nome', 'email', 'senha']
                 
 class ConsultaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Consulta
-        fields = ['data', 'cep', 'valorContaLuz', 'ajusteTarifa', 'tipoImovel', 'usuario']
+        fields = ['data', 'cep', 'valorContaLuz', 'ajusteTarifa', 'tipoImovel', 'user']
         
 class ConsultaReadDeleteSerializer(serializers.ModelSerializer):
     class Meta:
